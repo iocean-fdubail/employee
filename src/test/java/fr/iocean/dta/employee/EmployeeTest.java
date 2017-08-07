@@ -10,7 +10,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.iocean.dta.employee.model.Employee;
-import fr.iocean.dta.employee.repository.EmployeeRepository;
+import fr.iocean.dta.employee.service.EmployeeService;
 
 public class EmployeeTest {
 
@@ -19,12 +19,14 @@ public class EmployeeTest {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		EmployeeRepository employeeRepository = (EmployeeRepository) context.getBean("employeeRepository");
-		Assert.assertEquals(4, employeeRepository.findAllEmployees().size());
+        EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		Assert.assertEquals(4, employeeService.findAllEmployees().size());
 		Employee newEmployee = new Employee(5L, "Marie", "Curie", new BigDecimal(40000), "145687785", sdf.parse("2010/01/05"));
-		employeeRepository.saveEmployee(newEmployee);
-		Assert.assertEquals(5, employeeRepository.findAllEmployees().size());
+		employeeService.saveEmployee(newEmployee);
+		Assert.assertEquals(5, employeeService.findAllEmployees().size());
 		//...
+		employeeService.findLastHired();
+		
 		context.close();
 	}
 }

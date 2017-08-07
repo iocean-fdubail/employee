@@ -16,4 +16,19 @@
 		init-method="init">
 	</bean>
 	
+	<!-- For constructor injection-->
+	<bean id="employeeService" class="fr.iocean.dta.employee.service.EmployeeMockService">
+        <constructor-arg>
+            <ref bean="employeeRepository" />
+        </constructor-arg>
+    </bean>
+	
+	<!-- For setter injection 
+	<bean id="employeeService" class="fr.iocean.dta.employee.service.EmployeeMockService">
+		<property name="employeeRepository" ref="employeeRepository" />
+	</bean>
+	-->
+	
+
+	
 </beans>

@@ -59,5 +59,10 @@ public class EmployeeMockRepository implements EmployeeRepository{
 			employeeToUpdate.get().setSsn(employee.getSsn());
 		}	
 	}
+	
+    @Override
+    public Employee findLastHired() {
+        return employees.stream().max((e1, e2) -> e1.getHireDate().compareTo(e2.getHireDate())).get();
+    }
 
 }

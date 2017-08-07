@@ -1,11 +1,10 @@
-package fr.iocean.dta.employee.repository;
+package fr.iocean.dta.employee.service;
 
 import java.util.List;
 
 import fr.iocean.dta.employee.model.Employee;
 
-
-public interface EmployeeRepository {
+public interface EmployeeService {
 
 	void saveEmployee(Employee employee);
 
@@ -16,5 +15,4 @@ public interface EmployeeRepository {
 	void updateEmployee(Employee employee);
 
 	Employee findLastHired();
-
 }

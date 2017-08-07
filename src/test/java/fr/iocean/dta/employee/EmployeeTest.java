@@ -1,4 +1,4 @@
-package fr.iocean.dta;
+package fr.iocean.dta.employee;
 
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;

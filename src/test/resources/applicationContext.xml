@@ -29,6 +29,16 @@
 	</bean>
 	-->
 	
-
+	<!-- For constructor injection
+	<bean id="companyService" class="fr.iocean.dta.company.service.CompanyService">
+        <constructor-arg>
+            <ref bean="employeeService" />
+        </constructor-arg>
+    </bean>-->
+	
+	<!-- For setter injection -->
+	<bean id="companyService" class="fr.iocean.dta.company.service.CompanyService">
+		<property name="employeeService" ref="employeeService" />
+	</bean>
 	
 </beans>

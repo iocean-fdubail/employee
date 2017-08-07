@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import fr.iocean.dta.company.service.CompanyService;
 import fr.iocean.dta.employee.model.Employee;
 import fr.iocean.dta.employee.service.EmployeeService;
 
@@ -26,6 +27,9 @@ public class EmployeeTest {
 		Assert.assertEquals(5, employeeService.findAllEmployees().size());
 		//...
 		employeeService.findLastHired();
+
+        CompanyService companyService = (CompanyService) context.getBean("companyService");
+        Assert.assertEquals(5, companyService.getAllEmployees().size());
 		
 		context.close();
 	}

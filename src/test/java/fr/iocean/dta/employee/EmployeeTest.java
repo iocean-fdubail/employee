@@ -42,18 +42,17 @@ public class EmployeeTest {
 			employeeService.findBySsn("3453");
 		} catch (Exception e){
 		}
-		
-		
+
+
 		// Test employeeService.updateEmployees ROLLBACK when an employee doesn't exist
 		Employee nonExistingEmployee = new Employee(-500L, "Marie", "Curie", new BigDecimal(40000), "-145687785", sdf.parse("2010/01/05"));
 		newEmployee.setFirstName("Updated firstName");
 		try{
-		employeeService.updateEmployees(Arrays.asList(newEmployee, nonExistingEmployee));
-		} catch(RuntimeException e){
-			
-		}
+			employeeService.updateEmployees(Arrays.asList(newEmployee, nonExistingEmployee));
+		} catch(RuntimeException e){}
 		Assert.assertEquals("Marie" + employeeNumber, employeeService.findBySsn("145687785" + employeeNumber).getFirstName());
-		
+
+
 		context.close();
 	}
 

@@ -10,8 +10,6 @@
 
 	<context:component-scan base-package="fr.iocean.dta" />
 
-
-
     
 	<!-- repository -->
 	<bean id="employeeRepository"
@@ -44,4 +42,5 @@
 		<property name="employeeService" ref="employeeService" />
 	</bean>
 	
+	<bean id="employeeStubService" class="fr.iocean.dta.employee.service.EmployeeStubService"></bean>
 </beans>

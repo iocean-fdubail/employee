@@ -9,15 +9,16 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import fr.iocean.dta.employee.model.Employee;
 
-
+@Repository
 public class EmployeeMockRepository implements EmployeeRepository{
 
 	private List<Employee> employees;
 
+	@PostConstruct
 	public void init() throws ParseException{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		employees = new ArrayList<>() ;

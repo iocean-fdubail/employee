@@ -3,9 +3,7 @@ package fr.iocean.dta.employee;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,8 +11,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
-
 import fr.iocean.dta.App;
 import fr.iocean.dta.company.service.CompanyService;
 import fr.iocean.dta.employee.model.Employee;

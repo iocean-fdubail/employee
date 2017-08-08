@@ -43,11 +43,14 @@ public class EmployeeJdbcRepository extends AbstractJdbcRepository implements Em
 
     @Override
     public void updateEmployee(Employee employee) {
-        getJdbcTemplate().update(
+        int rowsAffected = getJdbcTemplate().update(
                 "update employee set firstname = ?, lastname = ?, ssn = ?, hiredate = ?, salary = ? where id = ?",
                 employee.getFirstName(), employee.getLastName(),
                 employee.getSsn(), employee.getHireDate(),
                 employee.getSalary(), employee.getId());
+        if (rowsAffected == 0){
+        	throw new RuntimeException();
+        }
 
     }
 

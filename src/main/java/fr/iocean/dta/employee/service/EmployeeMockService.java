@@ -50,5 +50,12 @@ public class EmployeeMockService implements EmployeeService {
 		return employeeRepository.findLastHired();
 	}
 
+	@Override
+	public void updateEmployees(List<Employee> employees) {		
+		employees.forEach(employee ->{
+			employeeRepository.updateEmployee(employee);});
+		
+	}
+
 
 }

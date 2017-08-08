@@ -22,7 +22,7 @@ public class EmployeeTest {
 		//System.setProperty("spring.profiles.active", "WRONG");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(App.class);
-        EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 		Assert.assertEquals(4, employeeService.findAllEmployees().size());
 		Employee newEmployee = new Employee(5L, "Marie", "Curie", new BigDecimal(40000), "145687785", sdf.parse("2010/01/05"));
 		employeeService.saveEmployee(newEmployee);
@@ -30,11 +30,16 @@ public class EmployeeTest {
 		//...
 		employeeService.findLastHired();
 
-        CompanyService companyService = (CompanyService) context.getBean("companyService");
-        Assert.assertEquals(5, companyService.getAllEmployees().size());
-		
+		CompanyService companyService = (CompanyService) context.getBean("companyService");
+		Assert.assertEquals(5, companyService.getAllEmployees().size());
+
+		try{
+			employeeService.findBySsn("3453");
+		} catch (Exception e){
+		}
+
 		context.close();
 	}
 
-	
+
 }

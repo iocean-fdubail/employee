@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import fr.iocean.dta.employee.exception.EmployeeNotFoundException;
 import fr.iocean.dta.employee.model.Employee;
 import fr.iocean.dta.employee.repository.EmployeeRepository;
 
@@ -32,7 +33,11 @@ public class EmployeeMockService implements EmployeeService {
 
 	@Override
 	public Employee findBySsn(String ssn) {
-		return employeeRepository.findBySsn(ssn);
+		Employee employee = employeeRepository.findBySsn(ssn);
+		if (employee == null){
+			throw new EmployeeNotFoundException();
+		}
+		return employee;
 	}
 
 	@Override

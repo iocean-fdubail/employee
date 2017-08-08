@@ -11,13 +11,13 @@ import fr.iocean.dta.employee.model.Employee;
 import fr.iocean.dta.employee.repository.EmployeeRepository;
 
 @Service("employeeService")
-@Profile(value = { "MOCK"})
-public class EmployeeMockService implements EmployeeService {
+@Profile(value = { "JDBC"})
+public class EmployeeJdbcService implements EmployeeService {
 	
 	private EmployeeRepository employeeRepository;
 	
 	@Autowired
-	public EmployeeMockService(EmployeeRepository employeeRepository) {
+	public EmployeeJdbcService(EmployeeRepository employeeRepository) {
 		this.employeeRepository = employeeRepository;
 	}
 	

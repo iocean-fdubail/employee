@@ -13,7 +13,6 @@ import fr.iocean.dta.employee.exception.EmployeeNotFoundException;
 public class AopConfiguration {
 
 	@Before("execution(* fr.iocean.dta.*.service.*.*(..))") // all service layers
-//	@Before("this(fr.iocean.dta.employee.service.EmployeeService)")
 	public void logUserServiceLayer(JoinPoint joinPoint) {
 		System.out.println("[" + joinPoint.getSignature().getDeclaringTypeName() + " has been called] : enter in " + joinPoint.getSignature().getName());
 		System.out.println("******");

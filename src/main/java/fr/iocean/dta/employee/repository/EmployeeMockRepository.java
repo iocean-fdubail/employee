@@ -9,11 +9,13 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import fr.iocean.dta.employee.model.Employee;
 
-@Repository
+@Repository("employeeRepository")
+@Profile(value = { "MOCK" })
 public class EmployeeMockRepository implements EmployeeRepository{
 
 	private List<Employee> employees;

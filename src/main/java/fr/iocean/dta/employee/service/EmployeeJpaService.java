@@ -12,14 +12,14 @@ import fr.iocean.dta.employee.model.Employee;
 import fr.iocean.dta.employee.repository.EmployeeRepository;
 
 @Service("employeeService")
-@Profile(value = { "Jdbc"})
+@Profile(value = { "JPA"})
 @Transactional
-public class EmployeeJdbcService implements EmployeeService {
+public class EmployeeJpaService implements EmployeeService {
 	
 	private EmployeeRepository employeeRepository;
 	
 	@Autowired
-	public EmployeeJdbcService(EmployeeRepository employeeRepository) {
+	public EmployeeJpaService(EmployeeRepository employeeRepository) {
 		this.employeeRepository = employeeRepository;
 	}
 	

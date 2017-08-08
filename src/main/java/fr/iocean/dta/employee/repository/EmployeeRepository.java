@@ -17,4 +17,6 @@ public interface EmployeeRepository {
 
 	Employee findLastHired();
 
+	void deleteAllEmployees();
+
 }

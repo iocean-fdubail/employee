@@ -7,8 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ComponentScan
-@EnableAspectJAutoProxy
-@EnableTransactionManagement
+//@EnableAspectJAutoProxy
 public class App {
 	
 }

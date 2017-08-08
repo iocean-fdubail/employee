@@ -68,4 +68,9 @@ public class EmployeeMockRepository implements EmployeeRepository{
         return employees.stream().max((e1, e2) -> e1.getHireDate().compareTo(e2.getHireDate())).get();
     }
 
+	@Override
+	public void deleteAllEmployees() {
+		employees.clear();
+	}
+
 }

@@ -61,6 +61,11 @@ public class EmployeeJdbcRepository extends AbstractJdbcRepository implements Em
                 new EmployeeMapper());
     }
 
+    @Override
+    public void deleteAllEmployees() {
+        getJdbcTemplate().update("delete from employee");
+    }
+    
     private static final class EmployeeMapper implements RowMapper<Employee> {
     	@Override
         public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {

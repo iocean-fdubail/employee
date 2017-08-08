@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -16,11 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.iocean.dta.App;
 import fr.iocean.dta.company.service.CompanyService;
 import fr.iocean.dta.employee.model.Employee;
+import fr.iocean.dta.employee.repository.EmployeeRepository;
 import fr.iocean.dta.employee.service.EmployeeService;
 
 public class EmployeeTest {
 
 	@Test
+	@Ignore("incompatible with testAppWithHibernate")
 	public void testApp() throws ParseException {
 
 		System.setProperty("spring.profiles.active", "JDBC");
@@ -55,6 +59,67 @@ public class EmployeeTest {
 
 		context.close();
 	}
+	
+    @Test
+    public void testAppWithHibernate() {
+		System.setProperty("spring.profiles.active", "JPA");
+        try {
+            AbstractApplicationContext context =
+                    new AnnotationConfigApplicationContext(App.class);
+            
+			/* Clean */
+            EmployeeRepository repository = (EmployeeRepository) context.getBean("employeeRepository");
+            repository.deleteAllEmployees();
 
+            EmployeeService service = (EmployeeService) context.getBean("employeeService");
+	    	 
+	        /*
+	         * Create Employee1
+	         */
+            Employee employee1 = new Employee();
+            employee1.setFirstName("Han");
+            employee1.setLastName("Yenn");
+            employee1.setSalary(new BigDecimal(10000));
+            employee1.setSsn("ssn00000001");
+	 
+	        /*
+	         * Create Employee2
+	         */
+            Employee employee2 = new Employee();
+            employee2.setFirstName("Dan");
+            employee2.setLastName("Thomas");
+            employee2.setSalary(new BigDecimal(20000));
+            employee2.setSsn("ssn00000002");
+	 
+	        /*
+	         * Persist both Employees
+	         */
+            service.saveEmployee(employee1);
+            service.saveEmployee(employee2);
+	 
+	        /*
+	         * Get all employees list from database
+	         */
+            List<Employee> employees = service.findAllEmployees();
+            employees.forEach(System.out::println);
+	 
+            System.out.println("---");
+	        /*
+	         * update an employee
+	         */
+            Employee employee = service.findBySsn("ssn00000001");
+            employee.setSalary(new BigDecimal(50000));
+            service.updateEmployee(employee);
+	 
+	        /*
+	         * Get all employees list from database
+	         */
+            List<Employee> employeeList = service.findAllEmployees();
+            employeeList.forEach(System.out::println);
+            context.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

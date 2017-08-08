@@ -74,5 +74,9 @@ public class Employee {
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
-
+	
+	@Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + firstName + " " + lastName + ", salary=" + salary.toString() + ", ssn=" + ssn + "]";
+    }
 }

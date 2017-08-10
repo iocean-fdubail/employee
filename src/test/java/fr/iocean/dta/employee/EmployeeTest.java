@@ -9,5 +9,6 @@ public class EmployeeTest {
 		@Test
 		public void testApp() {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		context.close();
 		}
 }

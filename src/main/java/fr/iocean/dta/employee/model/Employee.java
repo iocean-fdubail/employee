@@ -34,6 +34,18 @@ public class Employee {
 		this.hireDate = hireDate;
 		this.salary = salary;
 	}
+	
+	public Employee(String firstName,
+			String lastName,
+			BigDecimal salary,
+			String ssn,
+			Date hireDate) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.ssn = ssn;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
 	public Employee() {
 	}

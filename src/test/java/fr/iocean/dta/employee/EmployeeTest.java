@@ -18,13 +18,13 @@ public class EmployeeTest {
 	@Test
 	public void testApp() throws ParseException {
 
-		System.setProperty("spring.profiles.active", "JDBC");
+		System.setProperty("spring.profiles.active", "JPA");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(App.class);
 		EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 		Integer employeeNumber = employeeService.findAllEmployees().size();
 		Long id = (long) (employeeNumber + 1);
-		Employee newEmployee = new Employee(id, "Marie" + employeeNumber, "Curie", new BigDecimal(40000), "145687785" + employeeNumber, sdf.parse("2010/01/05"));
+		Employee newEmployee = new Employee("Marie" + employeeNumber, "Curie", new BigDecimal(40000), "145687785" + employeeNumber, sdf.parse("2010/01/05"));
 		employeeService.saveEmployee(newEmployee);
 		Assert.assertEquals(employeeNumber + 1, employeeService.findAllEmployees().size());
 		//...

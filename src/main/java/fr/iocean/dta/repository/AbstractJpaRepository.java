@@ -6,12 +6,10 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class AbstractJpaRepository {
-	
+public abstract class AbstractJpaRepository {
+
 	@PersistenceContext
 	protected EntityManager em;
-	
 
 	protected Session getSession() {
 		return em.unwrap(Session.class);
